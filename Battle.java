@@ -26,7 +26,7 @@ public class Battle {
 
         if (player.isAlive()) {
             System.out.println("You defeated the " + enemy.getName() + "!");
-          
+
         } else {
             System.out.println("You were defeated by the " + enemy.getName() + "...");
         }
@@ -58,4 +58,3 @@ public class Battle {
         System.out.println(enemy.getName() + " dealt " + damage + " damage to you.");
     }
 }
-

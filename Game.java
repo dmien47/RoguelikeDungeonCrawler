@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-
 public class Game {
     private boolean isRunning;
     private Player player;
     private Scanner scanner;
+
     private Inventory inventory;
 
     public void start() {
@@ -13,6 +13,7 @@ public class Game {
 
         System.out.println("Welcome to the Roguelike Dungeon!");
         player = CharacterCreation.createCharacter(scanner);
+
         inventory = Inventory.createInventory(scanner);
 
         //add starting gear to inventory
@@ -46,7 +47,6 @@ public class Game {
                     Battle battle = new Battle(player, goblin, inventory, scanner);
                     battle.start();
                     break;
-                    
                 default:
                     System.out.println("Invalid choice. Try again.");
             }

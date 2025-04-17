@@ -3,7 +3,6 @@ public abstract class Player {
     protected String characterClass;
     protected int hp, mana, strength, intelligence, resource;
     protected double criticalStrike;
-
     protected Weapon equippedWeapon;
     protected Armor equippedArmor;
 
@@ -16,6 +15,7 @@ public abstract class Player {
         this.intelligence = intelligence;
         this.criticalStrike = criticalStrike;
         this.resource = resource;
+
         this.equippedWeapon = equippedWeapon;
         this.equippedArmor = equippedArmor;
     }
@@ -105,6 +105,4 @@ public abstract class Player {
         System.out.println(name + " unlocked the skill: " + skillName);
     
     }
-
-
 }
