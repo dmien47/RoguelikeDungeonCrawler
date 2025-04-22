@@ -26,11 +26,11 @@ public class EnemyPool {
 
     // Returns a random base enemy
     public static Enemy getRandomBaseEnemy() {
-        return baseEnemies.get(random.nextInt(baseEnemies.size()));
+        return new Enemy(baseEnemies.get(random.nextInt(baseEnemies.size())));
     }
 
     // Returns a random boss enemy
     public static Enemy getRandomBossEnemy() {
-        return bossEnemies.get(random.nextInt(bossEnemies.size()));
+        return new Enemy(bossEnemies.get(random.nextInt(bossEnemies.size())));
     }
 }

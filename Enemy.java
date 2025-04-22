@@ -12,6 +12,13 @@ public class Enemy {
         this.xpDropped = xpDropped;
     }
 
+    public Enemy(Enemy old){
+        this.name = old.getName();
+        this.hp = old.getHp();
+        this.attackPower = old.getAttackPower();
+        this.xpDropped = old.getXpDropped();
+    }
+
     public String getName() {
         return name;
     }
