@@ -6,8 +6,6 @@ public class Game {
     private Player player;
     private Scanner scanner;
 
-    private Inventory inventory;
-
     private int nonBossRoomsStreak = 0;
 
     public void start() {
@@ -15,13 +13,12 @@ public class Game {
         scanner = new Scanner(System.in);
 
         System.out.println("Welcome to the Roguelike Dungeon!");
-        inventory = Inventory.createInventory(scanner);
         player = CharacterCreation.createCharacter(scanner);
 
         //add starting gear to inventory
-        inventory.addItem(player.getEquippedWeapon());
-        inventory.addItem(player.getEquippedArmor());
-        inventory.addItem(new Potion("Weak Potion", "Potion", 20));
+        Inventory.getInstance().addItem(player.getEquippedWeapon());
+        Inventory.getInstance().addItem(player.getEquippedArmor());
+        Inventory.getInstance().addItem(new Potion("Weak Potion", "Potion", 20));
 
         while (isRunning) {
             System.out.println("Select an option");
@@ -37,15 +34,12 @@ public class Game {
                     player.showStats();
                     break;
                 case "2":
-                    inventory.displayInventory(scanner, player);
+                    Inventory.getInstance().displayInventory(scanner, player);
                     break;
                 case "3":
-                    /*Enemy goblin = new Enemy("Goblin", 30, 5, 500);
-                    Battle battle = new Battle(player, goblin, inventory, scanner);
-                    battle.start();*/
                     List<Enemy> enemiesInRoom = RoomGenerator.generate(nonBossRoomsStreak);
                     for(int i = 0; i < enemiesInRoom.size(); i++){
-                        Battle battle = new Battle(player, enemiesInRoom.get(i), inventory, scanner);
+                        Battle battle = new Battle(player, enemiesInRoom.get(i), scanner);
                         battle.start();
                     }
                     nonBossRoomsStreak++;

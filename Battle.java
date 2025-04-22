@@ -3,13 +3,11 @@ import java.util.Scanner;
 public class Battle {
     private Player player;
     private Enemy enemy;
-    private Inventory inventory;
     private Scanner scanner;
 
-    public Battle(Player player, Enemy enemy, Inventory inventory, Scanner scanner) {
+    public Battle(Player player, Enemy enemy, Scanner scanner) {
         this.player = player;
         this.enemy = enemy;
-        this.inventory = inventory;
         this.scanner = scanner;
     }
 
@@ -48,7 +46,7 @@ public class Battle {
                 enemy.takeDamage(damage);
                 break;
             case "2":
-                inventory.displayInventory(scanner, player);
+                Inventory.getInstance().displayInventory(scanner, player);
                 break;
             default:
                 System.out.println("Invalid choice. Skipping turn.");

@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public abstract class Player {
     protected String name;
     protected String characterClass;
@@ -8,6 +10,7 @@ public abstract class Player {
     protected int lvl;
     protected double xp;
     private double xpNeededForLvlUp = 1000;
+
     public Player(String name, String characterClass, int hp,
                   double criticalStrike, Weapon equippedWeapon, Armor equippedArmor, int lvl, int xp) {
         this.name = name;
@@ -57,7 +60,13 @@ public abstract class Player {
     }
 
     public int attack() {
-        return equippedWeapon.getDmg();
+        Random r = new Random(); 
+        if(r.nextDouble() < criticalStrike){
+            System.out.println("Critical Strike!");
+            return equippedWeapon.getDmg() * 2;
+        }else{
+            return equippedWeapon.getDmg();
+        }
     }
 
     public void takeDamage(int damage) {
