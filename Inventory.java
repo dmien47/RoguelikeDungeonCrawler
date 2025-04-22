@@ -2,15 +2,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-public class Inventory implements IInventory{
+public class Inventory {
     private ArrayList<Item> items = new ArrayList<>();
 
     public static Inventory createInventory(Scanner scanner) {
         Inventory inv = new Inventory();
-        inv.addItem(new Item("HP Potion", "Potion", new HealBehavior(20)));
-        inv.addItem(new Item("Strength Elixir", "Buff", new AttributeBoostBehavior("strength", 5)));
-        inv.addItem(new Item("Fireball Tome", "Skill Book", new UnlockSkillBehavior("Fireball")));
+        //inv.addItem(new Potion("Weak Potion", "Potion", 20));
+        inv.addItem(new Weapon("Long Sword", "Weapon", 25));
+        inv.addItem(new Armor("Mage robes", "Armor", 25));
+
         return inv;
     }
 
@@ -18,99 +18,126 @@ public class Inventory implements IInventory{
         items.add(item);
     }
 
-    public void showItems() {
+    public void displayInventory(Scanner scanner, Player player) {
         if (items.isEmpty()) {
             System.out.println("Inventory is empty.");
             return;
-        }
-        for (int i = 0; i < items.size(); i++) {
-            System.out.println((i + 1) + ". " + items.get(i));
-        }
-    }
-
-    public void useItem(Scanner scanner, Player player) {
-        showItems();
-        System.out.println("Choose an item to use:");
-        try {
-            int choice = Integer.parseInt(scanner.nextLine()) - 1;
-            if (choice >= 0 && choice < items.size()) {
-                items.get(choice).use(player);
-                items.remove(choice);
-            } else {
-                System.out.println("Invalid choice.");
+        } else {
+            //display inventory
+            System.out.println("Inventory: ");
+            for (Item item : items) {
+                System.out.println(item.getName());
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a valid number.");
+            //give choice to use something from inv, or exit inv
+            System.out.println("\n1. Use/equip an item.");
+            System.out.println("2. Exit Inventory");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    useItem(scanner, player);
+                    break;
+                case "2":
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
         }
     }
+
+    //for equipping a weapon/armor and or using a potion from the inventory
+    public void useItem(Scanner scanner, Player player) {
+        Item selectedItem = null;
+
+        System.out.print("Enter the name of an item to use/equip: ");
+        String choice = scanner.nextLine();
+
+        for (Item item : items) {
+            if (item.getName().equalsIgnoreCase(choice.trim())) {
+                selectedItem = item;
+                break;
+            }
+        }
+
+        //if user chooses to use a potion from inv
+        if (selectedItem.getType().equalsIgnoreCase("Potion")) {
+            System.out.println("Use the " + selectedItem + "? (y/n)");
+            String confirmPotion = scanner.nextLine();
+            switch (confirmPotion) {
+                case "y":
+                case "Y":
+                    player.heal((Potion)selectedItem);
+                    items.remove(selectedItem);
+                    break;
+                case "n":
+                case "N":
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+
+        //if user chooses to equip a weapon from inv
+        /*********currently cannot equip/re-equip starter gear for some reason*********/
+        else if(selectedItem.getType().equalsIgnoreCase("Weapon")) {
+            System.out.println("Equip " + selectedItem + "? (y/n)");
+            String confirmWeapon = scanner.nextLine();
+            switch (confirmWeapon) {
+                case "y":
+                case "Y":
+                    player.equipWeapon((Weapon)selectedItem);
+                    break;
+                case "n":
+                case "N":
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+
+        //if user chooses to equip an armor from inv
+        /********currently cannot equip/re-equip starter gear for some reason*********/
+        else if(selectedItem.getType().equalsIgnoreCase("Armor")) {
+            System.out.println("Equip " + selectedItem + "? (y/n)");
+            String confirmArmor = scanner.nextLine();
+            switch (confirmArmor) {
+                case "y":
+                case "Y":
+                    player.equipArmor((Armor)selectedItem);
+                    //items.remove(selectedItem);
+                    break;
+                case "n":
+                case "N":
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        }
+
+    }
 }
 
-//UseBehavior
-
-interface UseBehavior {
-    void use(Player player);
-}
-
-class HealBehavior implements UseBehavior {
-    private int healAmount;
-
-    public HealBehavior(int healAmount) {
-        this.healAmount = healAmount;
-    }
-
-    @Override
-    public void use(Player player) {
-        player.heal(healAmount);
-    }
-}
-
-class AttributeBoostBehavior implements UseBehavior {
-    private String attribute;
-    private int amount;
-
-    public AttributeBoostBehavior(String attribute, int amount) {
-        this.attribute = attribute;
-        this.amount = amount;
-    }
-
-    @Override
-    public void use(Player player) {
-        player.boostAttribute(attribute, amount);
-    }
-}
-
-class UnlockSkillBehavior implements UseBehavior {
-    private String skillName;
-
-    public UnlockSkillBehavior(String skillName) {
-        this.skillName = skillName;
-    }
-
-    @Override
-    public void use(Player player) {
-        player.unlockSkill(skillName);
-    }
-}
 
 class Item {
     private String name;
     private String type;
-    private UseBehavior useBehavior;
 
-    public Item(String name, String type, UseBehavior useBehavior) {
+    public Item(String name, String type) {
         this.name = name;
         this.type = type;
-        this.useBehavior = useBehavior;
     }
 
-    public void use(Player player) {
-        if (useBehavior != null) {
-            useBehavior.use(player);
-        }
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override
     public String toString() {
-        return name + " (" + type + ")";
+        return name;
     }
 }

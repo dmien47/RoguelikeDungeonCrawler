@@ -2,10 +2,15 @@ import java.util.Scanner;
 
 public class CharacterCreation {
     public static Player createCharacter(Scanner scanner) {
-        System.out.println("Enter your character's name:");
+
+        System.out.print("Enter your character's name: ");
         String name = scanner.nextLine();
 
-        System.out.println("Choose a class: [1] Warrior [2] Mage [3] Rogue");
+        System.out.println("\nChoose a class:");
+        System.out.println("[1] Warrior: Strong and mighter warrior, utilizes heavy armor to take fights head on.");
+        System.out.println("[2] Mage: Students of sorcery. Though vunarable to attacks, mages are capable of an assortment of powerful spells.");
+        System.out.println("[3] Rogue: Masters of stealth and decpetion, excelling at exploiting their foes vulnerabilities.");
+
         String choice = scanner.nextLine();
 
         while(true){
