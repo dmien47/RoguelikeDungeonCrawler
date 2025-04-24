@@ -1,8 +1,13 @@
 import java.util.*;
 
 public class LootPool {
-    private static final List<Weapon> weaponPool = new ArrayList<>();
-    private static final List<Armor> armorPool = new ArrayList<>();
+    private static final List<Weapon> rogueWeaponPool = new ArrayList<>();
+    private static final List<Weapon> mageWeaponPool = new ArrayList<>();
+    private static final List<Weapon> warriorWeaponPool = new ArrayList<>();
+
+    private static final List<Armor> rogueArmorPool = new ArrayList<>();
+    private static final List<Armor> mageArmorPool = new ArrayList<>();
+    private static final List<Armor> warriorArmorPool = new ArrayList<>();
     private static final List<Potion> potionPool = new ArrayList<>();
     private static final Random random = new Random();
 
@@ -11,49 +16,49 @@ public class LootPool {
 
         //weapons
         //knight weapons?
-        weaponPool.add(new Weapon("Short Sword", "Weapon", 10));
-        weaponPool.add(new Weapon("Long Sword", "Weapon", 15));
-        weaponPool.add(new Weapon("Great Sword", "Weapon", 20));
-        weaponPool.add(new Weapon("Zweihander", "Weapon", 30));
-        weaponPool.add(new Weapon("Halberd", "Weapon", 22));
-        weaponPool.add(new Weapon("Spear", "Weapon", 13));
-        weaponPool.add(new Weapon("Mace", "Weapon", 22));
-        weaponPool.add(new Weapon("Battle axe", "Weapon", 24));
-        weaponPool.add(new Weapon("Morning Star", "Weapon", 23));
-        weaponPool.add(new Weapon("Great Bow", "Weapon", 30));
-        weaponPool.add(new Weapon("Crossbow", "Weapon", 20));
+        warriorWeaponPool.add(new Weapon("Short Sword", "Weapon", 10));
+        warriorWeaponPool.add(new Weapon("Long Sword", "Weapon", 15));
+        warriorWeaponPool.add(new Weapon("Great Sword", "Weapon", 20));
+        warriorWeaponPool.add(new Weapon("Zweihander", "Weapon", 30));
+        warriorWeaponPool.add(new Weapon("Halberd", "Weapon", 22));
+        warriorWeaponPool.add(new Weapon("Spear", "Weapon", 13));
+        warriorWeaponPool.add(new Weapon("Mace", "Weapon", 22));
+        warriorWeaponPool.add(new Weapon("Battle axe", "Weapon", 24));
+        warriorWeaponPool.add(new Weapon("Morning Star", "Weapon", 23));
+        warriorWeaponPool.add(new Weapon("Great Bow", "Weapon", 30));
+        warriorWeaponPool.add(new Weapon("Crossbow", "Weapon", 20));
 
         //Rouge weapons?
-        weaponPool.add(new Weapon("Rusty Dagger", "Weapon", 5));
-        weaponPool.add(new Weapon("Thief's Dagger", "Weapon", 10));
-        weaponPool.add(new Weapon("Assassin's Dagger", "Weapon", 17));
-        weaponPool.add(new Weapon("Short Bow", "Weapon", 12));
-        weaponPool.add(new Weapon("Long Bow", "Weapon", 16));
+        rogueWeaponPool.add(new Weapon("Rusty Dagger", "Weapon", 5));
+        rogueWeaponPool.add(new Weapon("Thief's Dagger", "Weapon", 10));
+        rogueWeaponPool.add(new Weapon("Assassin's Dagger", "Weapon", 17));
+        rogueWeaponPool.add(new Weapon("Short Bow", "Weapon", 12));
+        rogueWeaponPool.add(new Weapon("Long Bow", "Weapon", 16));
 
         //mage weapons?
-        weaponPool.add(new Weapon("Novice Staff", "Weapon", 13));
-        weaponPool.add(new Weapon("Apprentice Staff", "Weapon", 25));
-        weaponPool.add(new Weapon("Masters Staff", "Weapon", 35));
-        weaponPool.add(new Weapon("Staff of the Dark Arts", "Weapon", 40));
-        weaponPool.add(new Weapon("Demon's staff", "Weapon", 42));
+        mageWeaponPool.add(new Weapon("Novice Staff", "Weapon", 13));
+        mageWeaponPool.add(new Weapon("Apprentice Staff", "Weapon", 25));
+        mageWeaponPool.add(new Weapon("Masters Staff", "Weapon", 35));
+        mageWeaponPool.add(new Weapon("Staff of the Dark Arts", "Weapon", 40));
+        mageWeaponPool.add(new Weapon("Demon's staff", "Weapon", 42));
 
         //armor
         //knight?
-        armorPool.add(new Armor("Chain-mail", "Armor", 12));
-        armorPool.add(new Armor("Knight's Armor", "Armor", 20));
-        armorPool.add(new Armor("Elite Knight's Armor", "Armor", 30));
-        armorPool.add(new Armor("Dragon-scale Armor", "Armor", 40));
+        warriorArmorPool.add(new Armor("Chain-mail", "Armor", 12));
+        warriorArmorPool.add(new Armor("Knight's Armor", "Armor", 20));
+        warriorArmorPool.add(new Armor("Elite Knight's Armor", "Armor", 30));
+        warriorArmorPool.add(new Armor("Dragon-scale Armor", "Armor", 40));
 
         //rouge?
-        armorPool.add(new Armor("Thief's Cloak", "Armor", 7));
-        armorPool.add(new Armor("Assassin's Cloak", "Armor", 14));
-        armorPool.add(new Armor("Leather Vest", "Armor", 18));
+        rogueArmorPool.add(new Armor("Thief's Cloak", "Armor", 7));
+        rogueArmorPool.add(new Armor("Assassin's Cloak", "Armor", 14));
+        rogueArmorPool.add(new Armor("Leather Vest", "Armor", 18));
 
         //mage?
-        armorPool.add(new Armor("Novice Robes", "Armor", 3));
-        armorPool.add(new Armor("Apprentice Robes", "Armor", 7));
-        armorPool.add(new Armor("Master's Robes", "Armor", 13));
-        armorPool.add(new Armor("Robes of the Dark Arts", "Armor", 15));
+        mageArmorPool.add(new Armor("Novice Robes", "Armor", 3));
+        mageArmorPool.add(new Armor("Apprentice Robes", "Armor", 7));
+        mageArmorPool.add(new Armor("Master's Robes", "Armor", 13));
+        mageArmorPool.add(new Armor("Robes of the Dark Arts", "Armor", 15));
 
         //potions
         potionPool.add(new Potion("Weak Potion", "Potion", 25));
@@ -63,38 +68,77 @@ public class LootPool {
 
     //basic function for returning random loot from the loot pool, 0 is weapon, 1 is armor, 2 is potion
     //will have to edit probabilities of getting higher tier stuff depending on dungeon difficulty or progression level later
-    public static Item getRandomLoot() {
+    public static Item getRandomLoot(String spec) {
         int type = random.nextInt(3);
-        switch (type) {
-            case 0:
-                return weaponPool.get(random.nextInt(weaponPool.size()));
-            case 1:
-                return armorPool.get(random.nextInt(armorPool.size()));
-            case 2:
-                return potionPool.get(random.nextInt(potionPool.size()));
+        switch(spec){
+            case "Warrior":
+                switch (type) {
+                    case 0:
+                        return new Item(warriorWeaponPool.get(random.nextInt(warriorWeaponPool.size())));
+                    case 1:
+                        return new Item(warriorArmorPool.get(random.nextInt(warriorArmorPool.size())));
+                    case 2:
+                        return new Item(potionPool.get(random.nextInt(potionPool.size())));
+                    default:
+                        return null;
+                }
+            case "Mage":
+                switch (type) {
+                    case 0:
+                        return new Item(mageWeaponPool.get(random.nextInt(mageWeaponPool.size())));
+                    case 1:
+                        return new Item(mageArmorPool.get(random.nextInt(mageArmorPool.size())));
+                    case 2:
+                        return new Item(potionPool.get(random.nextInt(potionPool.size())));
+                    default:
+                        return null;
+                }
+                case "Rogue":
+                switch (type) {
+                    case 0:
+                        return new Item(rogueWeaponPool.get(random.nextInt(rogueWeaponPool.size())));
+                    case 1:
+                        return new Item(rogueArmorPool.get(random.nextInt(rogueArmorPool.size())));
+                    case 2:
+                        return new Item(potionPool.get(random.nextInt(potionPool.size())));
+                    default:
+                        return null;
+                }
             default:
                 return null;
         }
     }
 
     //returns only a random weapon from the weapon pool
-    public static Item getRandomWeapon() {
-        return weaponPool.get(random.nextInt(weaponPool.size()));
-        //alternatively something like this
-        /*
-        Item weaponLoot = LootPool.getRandomWeapon();
-        System.out.println("The chest gave you: " + weaponLoot.getName());
-        inventory.addItem(weaponLoot);
-         */
+    public static Item getRandomWeapon(String spec) {
+        switch(spec){
+            case "Warrior":
+                return new Item(warriorWeaponPool.get(random.nextInt(warriorWeaponPool.size())));
+            case "Mage":
+                return new Item(mageWeaponPool.get(random.nextInt(mageWeaponPool.size())));
+            case "Rogue":
+                return new Item(rogueWeaponPool.get(random.nextInt(rogueWeaponPool.size())));
+            default:
+                return null;
+        }
     }
 
     //returns only a random armor from the armor pool
-    public static Item getRandomArmor() {
-        return armorPool.get(random.nextInt(armorPool.size()));
+    public static Item getRandomArmor(String spec) {
+        switch(spec){
+            case "Warrior":
+                return new Item(warriorArmorPool.get(random.nextInt(warriorArmorPool.size())));
+            case "Mage":
+                return new Item(mageArmorPool.get(random.nextInt(mageArmorPool.size())));
+            case "Rogue":
+                return new Item(rogueArmorPool.get(random.nextInt(rogueArmorPool.size())));
+            default:
+                return null;
+        }
     }
 
     //returns only a random potion from the potion pool
     public static Item getRandomPotion() {
-        return potionPool.get(random.nextInt(potionPool.size()));
+        return new Item(potionPool.get(random.nextInt(potionPool.size())));
     }
 }
