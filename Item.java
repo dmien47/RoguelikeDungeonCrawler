@@ -7,6 +7,11 @@ class Item {
         this.type = type;
     }
 
+    public Item(Item old){
+        this.name = old.getName();
+        this.type = old.getType();
+    }
+
     public String getName() {
         return name;
     }

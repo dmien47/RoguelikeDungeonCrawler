@@ -38,6 +38,10 @@ public abstract class Player {
         }
     }
 
+    public String getCharacterClass(){
+        return characterClass;
+    }
+
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
@@ -78,6 +82,9 @@ public abstract class Player {
         System.out.println("You have " + hp + " hp.");
         System.out.println("You used the " + potion.getName() + " which healed " + potion.getHealAmount() + "HP.");
         hp += potion.getHealAmount();
+        if(hp > maxhp){
+            hp = maxhp;
+        }
         System.out.println("You now have " + hp + " hp.");
     }
 

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Battle {
     private Player player;
@@ -13,6 +13,7 @@ public class Battle {
 
     public void start() {
         //displayed enemy stats for testing
+        Random random = new Random();
         System.out.println("A wild " + enemy.getName() + " with " + enemy.getHp() +  " hp that does " + enemy.getAttackPower() + " damage appears!");
 
         while (player.isAlive() && enemy.isAlive()) {
@@ -26,6 +27,11 @@ public class Battle {
             System.out.println("You defeated the " + enemy.getName() + "!");
             System.out.println("You have " + player.getXp() + " and gained " + enemy.getXpDropped() + " xp!");
             double newXp = player.getXp() + enemy.getXpDropped();
+            if(random.nextDouble() <= .5){
+                Item loot = LootPool.getRandomLoot(player.getCharacterClass());
+                Inventory.getInstance().addItem(loot);
+                System.out.println("You recieved the " + loot.getType().toLowerCase() + " " + loot.getName());
+            }
             player.xp = newXp;
             player.lvlUp();
         } else {
