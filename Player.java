@@ -101,7 +101,7 @@ public abstract class Player {
     }
 
     public void equipArmor(Armor armor) {
-        if(equippedArmor == armor) {
+        if(equippedArmor.getName().equals(armor.getName())) {
             System.out.println(armor + " is already equipped!");
             return;
         }
@@ -112,7 +112,7 @@ public abstract class Player {
     }
 
     public void equipWeapon(Weapon weapon) {
-        if(equippedWeapon == weapon) {
+        if(equippedWeapon.getName().equals(weapon.getName())) {
             System.out.println(weapon + " is already equipped!");
             return;
         }
