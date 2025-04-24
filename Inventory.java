@@ -3,15 +3,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Inventory {
+    private static Inventory instance;
     private ArrayList<Item> items = new ArrayList<>();
 
-    public static Inventory createInventory(Scanner scanner) {
-        Inventory inv = new Inventory();
-        //inv.addItem(new Potion("Weak Potion", "Potion", 20));
-        inv.addItem(new Weapon("Long Sword", "Weapon", 25));
-        inv.addItem(new Armor("Mage robes", "Armor", 25));
+    private Inventory() {
+        items.add(new Weapon("Long Sword", "Weapon", 25));
+        items.add(new Armor("Mage robes", "Armor", 25));
+    }
 
-        return inv;
+    public static Inventory getInstance() {
+        if (instance == null) {
+            instance = new Inventory();
+        }
+        return instance;
     }
 
     public void addItem(Item item) {
