@@ -55,7 +55,7 @@ public class Battle {
 
     private void enemyTurn() {
         System.out.println("\n" + enemy.getName() + "'s Turn!");
-        int damage = enemy.attack();
+        int damage = enemy.attack()*(100 - player.getEquippedArmor().getDefense());
         player.takeDamage(damage);
         System.out.println(enemy.getName() + " dealt " + damage + " damage to you.");
     }

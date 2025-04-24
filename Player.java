@@ -3,7 +3,7 @@ import java.util.Random;
 public abstract class Player {
     protected String name;
     protected String characterClass;
-    protected int hp, mana, strength, intelligence, resource;
+    protected int hp, maxhp;
     protected double criticalStrike;
     protected Weapon equippedWeapon;
     protected Armor equippedArmor;
@@ -11,11 +11,12 @@ public abstract class Player {
     protected double xp;
     private double xpNeededForLvlUp = 1000;
 
-    public Player(String name, String characterClass, int hp,
+    public Player(String name, String characterClass, int hp, int maxhp, 
                   double criticalStrike, Weapon equippedWeapon, Armor equippedArmor, int lvl, int xp) {
         this.name = name;
         this.characterClass = characterClass;
         this.hp = hp;
+        this.maxhp = maxhp;
         this.criticalStrike = criticalStrike;
         this.equippedWeapon = equippedWeapon;
         this.equippedArmor = equippedArmor;
@@ -28,7 +29,6 @@ public abstract class Player {
         System.out.println("Class: " + characterClass);
         System.out.println("Level: " + lvl);
         System.out.println("HP: " + hp);
-        System.out.println("Strength: " + strength + " | Intelligence: " + intelligence);
         System.out.println("Crit: " + criticalStrike);
         if (equippedWeapon != null) {
             System.out.println("Equipped Weapon: " + equippedWeapon.getName());
@@ -88,11 +88,11 @@ public abstract class Player {
             System.out.println("All stats increased");  //?
             lvl++;
             hp += 10;
-            strength++;
-            intelligence++;
             criticalStrike *= 1.05;
-            xp = 0; //reset player xp after leveling up
+            xp = xp - xpNeededForLvlUp; //reset player xp after leveling up
             xpNeededForLvlUp *= 1.2; //next level take 20% more xp
+            maxhp *= 1.1;
+            hp = maxhp;
             return true;
         } else {
             System.out.println("Cannot level up yet.");
@@ -120,18 +120,6 @@ public abstract class Player {
         System.out.println("You equipped the " + weapon.getName() + " with " + weapon.getDmg() + ".");
         equippedWeapon = weapon;
         System.out.println("You now have the " + equippedWeapon + " equipped with " + weapon.getDmg() + " damage.");
-    }
-
-    public void boostAttribute(String attr, int value) {
-        switch (attr.toLowerCase()) {
-            case "strength":
-                this.strength += value;
-                break;
-            case "intelligence":
-                this.intelligence += value;
-                break;
-        }
-        System.out.println(name + "'s " + attr + " increased by " + value);
     }
 
     public void unlockSkill(String skillName) {
