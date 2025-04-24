@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class Battle {
     private Player player;
@@ -13,7 +13,6 @@ public class Battle {
 
     public void start() {
         //displayed enemy stats for testing
-        Random random = new Random();
         System.out.println("A wild " + enemy.getName() + " with " + enemy.getHp() +  " hp that does " + enemy.getAttackPower() + " damage appears!");
 
         while (player.isAlive() && enemy.isAlive()) {
@@ -27,15 +26,10 @@ public class Battle {
             System.out.println("You defeated the " + enemy.getName() + "!");
             System.out.println("You have " + player.getXp() + " and gained " + enemy.getXpDropped() + " xp!");
             double newXp = player.getXp() + enemy.getXpDropped();
-            if(random.nextDouble() <= .5){
-                Item loot = LootPool.getRandomLoot(player.getCharacterClass());
-                Inventory.getInstance().addItem(loot);
-                System.out.println("You recieved the " + loot.getType().toLowerCase() + " " + loot.getName());
-            }
             player.xp = newXp;
             player.lvlUp();
         } else {
-            System.out.println("You were defeated by the " + enemy.getName() + "...");
+            System.out.println("You were defeated at lvl " + player.lvl + " by the " + enemy.getName() + "...");
             System.exit(0);
         }
     }
@@ -61,8 +55,19 @@ public class Battle {
 
     private void enemyTurn() {
         System.out.println("\n" + enemy.getName() + "'s Turn!");
-        int damage = enemy.attack()*(100 - player.getEquippedArmor().getDefense());
-        player.takeDamage(damage);
-        System.out.println(enemy.getName() + " dealt " + damage + " damage to you.");
+
+        if (enemy.getIsBoss()) {
+            if (Math.random() < 0.5) {
+                enemy.specialMove(player, scanner);
+            } else {
+                int damage = enemy.attack();
+                player.takeDamage(damage);
+                System.out.println(enemy.getName() + " dealt " + damage + " damage to you.");
+            }
+        } else {
+            int damage = enemy.attack();
+            player.takeDamage(damage);
+            System.out.println(enemy.getName() + " dealt " + damage + " damage to you.");
+        }
     }
 }

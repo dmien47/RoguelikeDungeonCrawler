@@ -3,7 +3,7 @@ import java.util.Random;
 public abstract class Player {
     protected String name;
     protected String characterClass;
-    protected int hp, maxhp;
+    protected int hp, mana, strength, intelligence, resource;
     protected double criticalStrike;
     protected Weapon equippedWeapon;
     protected Armor equippedArmor;
@@ -11,12 +11,11 @@ public abstract class Player {
     protected double xp;
     private double xpNeededForLvlUp = 1000;
 
-    public Player(String name, String characterClass, int hp, int maxhp, 
+    public Player(String name, String characterClass, int hp,
                   double criticalStrike, Weapon equippedWeapon, Armor equippedArmor, int lvl, int xp) {
         this.name = name;
         this.characterClass = characterClass;
         this.hp = hp;
-        this.maxhp = maxhp;
         this.criticalStrike = criticalStrike;
         this.equippedWeapon = equippedWeapon;
         this.equippedArmor = equippedArmor;
@@ -29,17 +28,13 @@ public abstract class Player {
         System.out.println("Class: " + characterClass);
         System.out.println("Level: " + lvl);
         System.out.println("HP: " + hp);
-        System.out.println("Crit: " + criticalStrike);
+        System.out.println("Critical Strike chance: " + criticalStrike);
         if (equippedWeapon != null) {
             System.out.println("Equipped Weapon: " + equippedWeapon.getName());
         }
         if (equippedArmor != null) {
             System.out.println("Equipped Armor: " + equippedArmor.getName());
         }
-    }
-
-    public String getCharacterClass(){
-        return characterClass;
     }
 
     public Weapon getEquippedWeapon() {
@@ -82,9 +77,6 @@ public abstract class Player {
         System.out.println("You have " + hp + " hp.");
         System.out.println("You used the " + potion.getName() + " which healed " + potion.getHealAmount() + "HP.");
         hp += potion.getHealAmount();
-        if(hp > maxhp){
-            hp = maxhp;
-        }
         System.out.println("You now have " + hp + " hp.");
     }
 
@@ -96,10 +88,8 @@ public abstract class Player {
             lvl++;
             hp += 10;
             criticalStrike *= 1.05;
-            xp = xp - xpNeededForLvlUp; //reset player xp after leveling up
+            xp = 0; //reset player xp after leveling up
             xpNeededForLvlUp *= 1.2; //next level take 20% more xp
-            maxhp *= 1.1;
-            hp = maxhp;
             return true;
         } else {
             System.out.println("Cannot level up yet.");
@@ -108,7 +98,7 @@ public abstract class Player {
     }
 
     public void equipArmor(Armor armor) {
-        if(equippedArmor.getName().equals(armor.getName())) {
+        if(equippedArmor == armor) {
             System.out.println(armor + " is already equipped!");
             return;
         }
@@ -119,7 +109,7 @@ public abstract class Player {
     }
 
     public void equipWeapon(Weapon weapon) {
-        if(equippedWeapon.getName().equals(weapon.getName())) {
+        if(equippedWeapon == weapon) {
             System.out.println(weapon + " is already equipped!");
             return;
         }
@@ -129,8 +119,9 @@ public abstract class Player {
         System.out.println("You now have the " + equippedWeapon + " equipped with " + weapon.getDmg() + " damage.");
     }
 
+
     public void unlockSkill(String skillName) {
         System.out.println(name + " unlocked the skill: " + skillName);
-    
     }
+
 }

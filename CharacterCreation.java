@@ -7,9 +7,9 @@ public class CharacterCreation {
         String name = scanner.nextLine();
 
         System.out.println("\nChoose a class:");
-        System.out.println("[1] Warrior: Strong and mighter warrior, utilizes heavy armor to take fights head on.");
-        System.out.println("[2] Mage: Students of sorcery. Though vunarable to attacks, mages are capable of an assortment of powerful spells.");
-        System.out.println("[3] Rogue: Masters of stealth and decpetion, excelling at exploiting their foes vulnerabilities.");
+        System.out.println("[1] Warrior:\nStrong and mighty warrior, utilizes heavy armor to take fights head on.\n");
+        System.out.println("[2] Mage:\nStudents of sorcery. Though vulnerable to attacks, mages are capable of an assortment of powerful spells.\n");
+        System.out.println("[3] Rogue:\nMasters of stealth and deception, excelling at exploiting their foes vulnerabilities.\n");
 
         String choice = scanner.nextLine();
 

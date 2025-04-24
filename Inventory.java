@@ -9,6 +9,7 @@ public class Inventory {
     private Inventory() {
         items.add(new Weapon("Long Sword", "Weapon", 25));
         items.add(new Armor("Mage robes", "Armor", 25));
+        items.add(new Weapon("Dev God Sword", "Weapon", 1000));
     }
 
     public static Inventory getInstance() {
@@ -119,5 +120,29 @@ public class Inventory {
             }
         }
 
+    }
+}
+
+
+class Item {
+    private String name;
+    private String type;
+
+    public Item(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
