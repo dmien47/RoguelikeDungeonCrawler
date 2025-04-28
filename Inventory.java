@@ -22,6 +22,10 @@ public class Inventory {
         items.add(item);
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public void displayInventory(Scanner scanner, Player player) {
         if (items.isEmpty()) {
             System.out.println("Inventory is empty.");
@@ -71,9 +75,15 @@ public class Inventory {
             switch (confirmPotion) {
                 case "y":
                 case "Y":
-                    player.heal((Potion)selectedItem);
-                    items.remove(selectedItem);
-                    break;
+                    if(player.getHp() == player.getMaxHp()) {
+                        System.out.println("You are already at maxium HP!");
+                        break;
+                    } else {
+                        player.heal((Potion)selectedItem);
+                        items.remove(selectedItem);
+                        break;
+                    }
+                    
                 case "n":
                 case "N":
                     break;

@@ -16,7 +16,7 @@ public class RoomGenerator {
             System.out.println("Boss Room Encountered: " + boss.getName());
         } else {
             // Normal room: 2–5 base enemies
-            int enemyCount = 2 + random.nextInt(4); // (0–3) + 2 => 2 to 5
+            int enemyCount = 2 + random.nextInt(3); // (0–3) + 2 => 2 to 5
             for (int i = 0; i < enemyCount; i++) {
                 Enemy enemy = EnemyPool.getRandomBaseEnemy();
                 roomEnemies.add(enemy);

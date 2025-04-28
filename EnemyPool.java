@@ -7,21 +7,29 @@ public class EnemyPool {
 
     static {
         // Base enemies
-        baseEnemies.add(new Enemy("Skeleton", 30, 5, 200.0));
-        baseEnemies.add(new Enemy("Goblin", 25, 7, 120.5));
-        baseEnemies.add(new Enemy("Zombie", 40, 4, 150.0));
-        baseEnemies.add(new Enemy("Bandit", 35, 8, 200.0));
-        baseEnemies.add(new Enemy("Slime", 20, 3, 80.0));
-        baseEnemies.add(new Enemy("Bat", 15, 6, 60.0));
-        baseEnemies.add(new Enemy("Spider", 28, 6, 110.0));
-        baseEnemies.add(new Enemy("Cultist", 32, 9, 180.0));
+        baseEnemies.add(new Enemy("Skeleton", 30, 10, 200.0));
+        baseEnemies.add(new Enemy("Goblin", 25, 17, 150.0));
+        baseEnemies.add(new Enemy("Zombie", 40, 14, 350.0));
+        baseEnemies.add(new Enemy("Bandit", 35, 18, 250.0));
+        baseEnemies.add(new Enemy("Slime", 20, 13, 80.0));
+        baseEnemies.add(new Enemy("Bat", 15, 16, 60.0));
+        baseEnemies.add(new Enemy("Giant Spider", 28, 16, 170.0));
+        baseEnemies.add(new Enemy("Cultist", 32, 19, 220.0));
 
         // Boss enemies
-        bossEnemies.add(new Enemy("Necromancer", 120, 20, 100.0));
+        /*bossEnemies.add(new Enemy("Necromancer", 120, 20, 100.0));
         bossEnemies.add(new Enemy("Orc Warlord", 150, 25, 120.0));
         bossEnemies.add(new Enemy("Ancient Dragon", 200, 35, 200.0));
         bossEnemies.add(new Enemy("Lich King", 180, 30, 180.0));
-        bossEnemies.add(new Enemy("Demon Lord", 220, 40, 250.0));
+        bossEnemies.add(new Enemy("Demon Lord", 220, 40, 250.0));*/
+
+        bossEnemies.add(new Necromancer());
+        //bossEnemies.add(new AncientDragon());
+        //bossEnemies.add(new MindBender());
+        //bossEnemies.add(new OrcWarlord());
+        //bossEnemies.add(new DemonLord());
+
+
     }
 
     // Returns a random base enemy
@@ -31,6 +39,9 @@ public class EnemyPool {
 
     // Returns a random boss enemy
     public static Enemy getRandomBossEnemy() {
-        return new Enemy(bossEnemies.get(random.nextInt(bossEnemies.size())));
+
+        Enemy boss = new Necromancer(/*bossEnemies.get(random.nextInt(bossEnemies.size()))*/bossEnemies.get(0));
+        boss.setIsBoss(true);
+        return boss;
     }
 }
