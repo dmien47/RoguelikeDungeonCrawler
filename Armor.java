@@ -1,13 +1,13 @@
 public class Armor extends Item {
 
-    private int defense;
+    private double defense;
 
-    public Armor(String name, String type, int defense) {
+    public Armor(String name, String type, double defense) {
         super(name, type);
         this.defense = defense;
     }
 
-    public int getDefense() {
+    public double getDefense() {
         return defense;
     }
 

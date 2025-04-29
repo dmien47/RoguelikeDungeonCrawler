@@ -52,7 +52,9 @@ public class Game {
                         Battle battle = new Battle(player, enemiesInRoom.get(i), scanner, Inventory.getInstance());
                         battle.start();
                     }
-                    nonBossRoomsStreak++;
+                    if(!enemiesInRoom.get(0).getIsBoss()){
+                        nonBossRoomsStreak++;
+                    }
                     dungeonsCleared++;
                     break;
                 case "4":

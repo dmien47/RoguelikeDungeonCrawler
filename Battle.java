@@ -1,10 +1,11 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Battle {
     private Player player;
     private Enemy enemy;
     private Scanner scanner;
     private Inventory inventory;
+    private Random random = new Random();
 
     //for freeze status effect, 30% chance of thawing out, increases each round
     private double chance = 0.3;
@@ -79,8 +80,13 @@ public class Battle {
             }
             System.out.println("You have " + player.getXp() + " and gained " + enemy.getXpDropped() + " xp!");
             double newXp = player.getXp() + enemy.getXpDropped();
+            if(random.nextDouble() <= .5){
+                Item loot = LootPool.getRandomLoot(player.getCharacterClass());
+                Inventory.getInstance().addItem(loot);
+                System.out.println("You recieved the " + loot.getType().toLowerCase() + " " + loot.getName());
+            }
             player.xp = newXp;
-            player.lvlUp();
+            while(player.lvlUp()){};
         } else {
             System.out.println("\nYou were defeated at lvl " + player.lvl + " by the " + enemy.getName() + "...");
             System.out.println("Dungeons cleared: " + Game.dungeonsCleared);
@@ -117,13 +123,13 @@ public class Battle {
             if (Math.random() < 0.5 && player.getStatusAffliction() == null) {
                 enemy.specialMove(player, scanner, enemy, inventory);
             } else {
-                int damage = enemy.attack();
+                int damage = (int) ((enemy.attack())*(1-player.getEquippedArmor().getDefense()));
                 System.out.println(enemy.getName() + " dealt " + damage + " damage to you.\n");
                 player.takeDamage(damage);
             }
 
         } else {
-            int damage = enemy.attack();
+            int damage = (int) ((enemy.attack())*(1-player.getEquippedArmor().getDefense()));
             System.out.println(enemy.getName() + " dealt " + damage + " damage to you.\n");
             player.takeDamage(damage);
         }

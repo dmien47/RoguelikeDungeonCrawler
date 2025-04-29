@@ -9,7 +9,7 @@ public abstract class Player {
     protected Armor equippedArmor;
     protected int lvl;
     protected double xp;
-    private double xpNeededForLvlUp = 1000;
+    private double xpNeededForLvlUp = 500;
     private String statusAffliction = null;
 
     public Player(String name, String characterClass, int hp, int maxHp, double criticalStrike,
@@ -121,7 +121,6 @@ public abstract class Player {
             System.out.println("Hp:          " + maxHp + " -> " + (maxHp *= 1.1) + "!");
             System.out.println("Crit Chance: " + criticalStrike + " -> " + (criticalStrike *= 1.05) + "!"); 
             lvl++;
-            hp += 10;
             criticalStrike *= 1.05;
             xp = xp - xpNeededForLvlUp; //reset player xp after leveling up
             xpNeededForLvlUp *= 1.2; //next level takes 20% more xp

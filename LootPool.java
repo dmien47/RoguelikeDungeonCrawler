@@ -44,21 +44,21 @@ public class LootPool {
 
         //armor
         //knight?
-        warriorArmorPool.add(new Armor("Chain-mail", "Armor", 12));
-        warriorArmorPool.add(new Armor("Knight's Armor", "Armor", 20));
-        warriorArmorPool.add(new Armor("Elite Knight's Armor", "Armor", 30));
-        warriorArmorPool.add(new Armor("Dragon-scale Armor", "Armor", 40));
+        warriorArmorPool.add(new Armor("Chain-mail", "Armor", .12));
+        warriorArmorPool.add(new Armor("Knight's Armor", "Armor", .2));
+        warriorArmorPool.add(new Armor("Elite Knight's Armor", "Armor", .3));
+        warriorArmorPool.add(new Armor("Dragon-scale Armor", "Armor", .4));
 
         //rouge?
-        rogueArmorPool.add(new Armor("Thief's Cloak", "Armor", 7));
-        rogueArmorPool.add(new Armor("Assassin's Cloak", "Armor", 14));
-        rogueArmorPool.add(new Armor("Leather Vest", "Armor", 18));
+        rogueArmorPool.add(new Armor("Thief's Cloak", "Armor", .07));
+        rogueArmorPool.add(new Armor("Assassin's Cloak", "Armor", .14));
+        rogueArmorPool.add(new Armor("Leather Vest", "Armor", .18));
 
         //mage?
-        mageArmorPool.add(new Armor("Novice Robes", "Armor", 3));
-        mageArmorPool.add(new Armor("Apprentice Robes", "Armor", 7));
-        mageArmorPool.add(new Armor("Master's Robes", "Armor", 13));
-        mageArmorPool.add(new Armor("Robes of the Dark Arts", "Armor", 15));
+        mageArmorPool.add(new Armor("Novice Robes", "Armor", .03));
+        mageArmorPool.add(new Armor("Apprentice Robes", "Armor", .07));
+        mageArmorPool.add(new Armor("Master's Robes", "Armor", .13));
+        mageArmorPool.add(new Armor("Robes of the Dark Arts", "Armor", .15));
 
         //potions
         potionPool.add(new Potion("Weak Potion", "Potion", 25));
