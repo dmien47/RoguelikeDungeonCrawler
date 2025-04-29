@@ -47,12 +47,12 @@ public class Game {
                     Inventory.getInstance().displayInventory(scanner, player);
                     break;
                 case "3":
-                    List<Enemy> enemiesInRoom = RoomGenerator.generate(nonBossRoomsStreak);
+                    List<Enemies> enemiesInRoom = RoomGenerator.generate(nonBossRoomsStreak);
                     for(int i = 0; i < enemiesInRoom.size(); i++){
                         Battle battle = new Battle(player, enemiesInRoom.get(i), scanner, Inventory.getInstance());
                         battle.start();
                     }
-                    if(!enemiesInRoom.get(0).getIsBoss()){
+                    if(!(enemiesInRoom.get(0) instanceof Boss)){
                         nonBossRoomsStreak++;
                     }
                     dungeonsCleared++;

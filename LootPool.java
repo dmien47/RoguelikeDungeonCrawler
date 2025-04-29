@@ -74,33 +74,33 @@ public class LootPool {
             case "Warrior":
                 switch (type) {
                     case 0:
-                        return new Item(warriorWeaponPool.get(random.nextInt(warriorWeaponPool.size())));
+                        return new Weapon(warriorWeaponPool.get(random.nextInt(warriorWeaponPool.size())));
                     case 1:
-                        return new Item(warriorArmorPool.get(random.nextInt(warriorArmorPool.size())));
+                        return new Armor(warriorArmorPool.get(random.nextInt(warriorArmorPool.size())));
                     case 2:
-                        return new Item(potionPool.get(random.nextInt(potionPool.size())));
+                        return new Potion(potionPool.get(random.nextInt(potionPool.size())));
                     default:
                         return null;
                 }
             case "Mage":
                 switch (type) {
                     case 0:
-                        return new Item(mageWeaponPool.get(random.nextInt(mageWeaponPool.size())));
+                        return new Weapon(mageWeaponPool.get(random.nextInt(mageWeaponPool.size())));
                     case 1:
-                        return new Item(mageArmorPool.get(random.nextInt(mageArmorPool.size())));
+                        return new Armor(mageArmorPool.get(random.nextInt(mageArmorPool.size())));
                     case 2:
-                        return new Item(potionPool.get(random.nextInt(potionPool.size())));
+                        return new Potion(potionPool.get(random.nextInt(potionPool.size())));
                     default:
                         return null;
                 }
                 case "Rogue":
                 switch (type) {
                     case 0:
-                        return new Item(rogueWeaponPool.get(random.nextInt(rogueWeaponPool.size())));
+                        return new Weapon(rogueWeaponPool.get(random.nextInt(rogueWeaponPool.size())));
                     case 1:
-                        return new Item(rogueArmorPool.get(random.nextInt(rogueArmorPool.size())));
+                        return new Armor(rogueArmorPool.get(random.nextInt(rogueArmorPool.size())));
                     case 2:
-                        return new Item(potionPool.get(random.nextInt(potionPool.size())));
+                        return new Potion(potionPool.get(random.nextInt(potionPool.size())));
                     default:
                         return null;
                 }

@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Battle {
     private Player player;
-    private Enemy enemy;
+    private Enemies enemy;
     private Scanner scanner;
     private Inventory inventory;
     private Random random = new Random();
@@ -17,7 +17,7 @@ public class Battle {
     private static int enemiesKilled = 0;
     private static int bossesKilled = 0;
 
-    public Battle(Player player, Enemy enemy, Scanner scanner, Inventory inventory) {
+    public Battle(Player player, Enemies enemy, Scanner scanner, Inventory inventory) {
         this.player = player;
         this.enemy = enemy;
         this.scanner = scanner;
@@ -73,7 +73,7 @@ public class Battle {
         if (player.isAlive()) {
             player.setStatusAffliction(null); //clear status effect if any
             System.out.println(enemy.getName() + " has been defeated!\n");
-            if(enemy.getIsBoss() == true) {
+            if(enemy instanceof Boss) {
                 bossesKilled++;
             } else {
                 enemiesKilled++;
@@ -118,7 +118,7 @@ public class Battle {
     private void enemyTurn() {
         System.out.println("\n" + enemy.getName() + "'s Turn!");
 
-        if (enemy.getIsBoss()) {
+        if (enemy instanceof Boss) {
             //50% chance of boss using special move, if it applies an effect, they wont reuse move until effect ends
             if (Math.random() < 0.5 && player.getStatusAffliction() == null) {
                 enemy.specialMove(player, scanner, enemy, inventory);

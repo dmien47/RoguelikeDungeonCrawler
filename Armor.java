@@ -7,6 +7,11 @@ public class Armor extends Item {
         this.defense = defense;
     }
 
+    public Armor(Armor armor){
+        super(armor.getName(), armor.getType());
+        this.defense = armor.getDefense();
+    }
+
     public double getDefense() {
         return defense;
     }

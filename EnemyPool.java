@@ -2,7 +2,7 @@ import java.util.*;
 
 public class EnemyPool {
     private static final List<Enemy> baseEnemies = new ArrayList<>();
-    private static final List<Enemy> bossEnemies = new ArrayList<>();
+    private static final List<Boss> bossEnemies = new ArrayList<>();
     private static final Random random = new Random();
 
     static {
@@ -31,10 +31,8 @@ public class EnemyPool {
     }
 
     // Returns a random boss enemy
-    public static Enemy getRandomBossEnemy() {
-        
-        Enemy boss = new Enemy(bossEnemies.get(random.nextInt(bossEnemies.size())));
-        boss.setIsBoss(true);
-        return boss;
+    public static Boss getRandomBossEnemy() {
+        Boss template = bossEnemies.get(random.nextInt(bossEnemies.size()));
+        return (Boss)template.copy();
     }
 }

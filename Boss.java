@@ -1,44 +1,23 @@
 import java.util.Scanner;
 
-public class Enemy implements Enemies{
+public class Boss implements Enemies{
     private String name;
     private int hp;
     private int attackPower;
     private double xpDropped;
-    private boolean isBoss;
 
-    public Enemy(String name, int hp, int attackPower, double xpDropped) {
+    public Boss(String name, int hp, int attackPower, double xpDropped) {
         this.name = name;
         this.hp = hp;
         this.attackPower = attackPower;
         this.xpDropped = xpDropped;
-        this.isBoss = false;
     }
 
-    public Enemy(Enemy old){
+    public Boss(Boss old){
         this.name = old.getName();
         this.hp = old.getHp();
         this.attackPower = old.getAttackPower();
         this.xpDropped = old.getXpDropped();
-        this.isBoss = old.getIsBoss();
-    }
-
-    public void setIsBoss(boolean isBoss) {
-        this.isBoss = isBoss;
-    }
-
-    public boolean getIsBoss() {
-        return isBoss;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int getHp() {
-        return hp;
     }
 
     @Override
@@ -52,7 +31,17 @@ public class Enemy implements Enemies{
     }
 
     @Override
-    public boolean isAlive() {
+    public int getHp() {
+        return hp;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public boolean isAlive(){
         return hp > 0;
     }
 
@@ -68,9 +57,11 @@ public class Enemy implements Enemies{
     }
 
     @Override
-    public Enemies copy() {
-        return new Enemy(this);
-    }
+    public void specialMove(Player player, Scanner scanner, Enemies enemy, Inventory inventory){}
 
-    public void specialMove(Player player, Scanner scanner, Enemies enemy, Inventory inventory) {}
+    @Override
+    public Enemies copy() {
+        return new Boss(this); 
+    }
 }
+

@@ -7,6 +7,11 @@ public class Weapon extends Item {
         this.dmg = dmg;
     }
 
+    public Weapon(Weapon weapon){
+        super(weapon.getName(), weapon.getType());
+        this.dmg = weapon.getDmg();
+    }
+
     public int getDmg() {
         return dmg;
     }

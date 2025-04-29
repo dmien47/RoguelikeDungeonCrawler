@@ -6,6 +6,11 @@ public class Potion extends Item {
         this.healAmount = healAmount;
     }
 
+    public Potion(Potion potion){
+        super(potion.getName(), potion.getType());
+        this.healAmount = potion.getHealAmount();
+    }
+
     public int getHealAmount() {
         return healAmount;
     }
