@@ -54,6 +54,8 @@ public class Game {
                     }
                     if(!(enemiesInRoom.get(0) instanceof Boss)){
                         nonBossRoomsStreak++;
+                    }else{
+                        nonBossRoomsStreak = 0;
                     }
                     dungeonsCleared++;
                     break;
